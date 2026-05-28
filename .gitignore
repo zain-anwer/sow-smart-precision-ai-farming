@@ -1,0 +1,12 @@
+# python packages
+venv/
+
+# cache files for python modules
+__pycache__/
+
+# learning notes
+notes.txt
+
+# to do list
+todo_list.txt
+
