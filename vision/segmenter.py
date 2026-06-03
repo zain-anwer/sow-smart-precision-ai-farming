@@ -19,8 +19,8 @@ def segment_image(img_path : str, n : int = 10):
     img_arr = cv2.imread(img_path)
     h, w = img_arr.shape[:2]
 
-    print('height of the image: ')
-    print('width of the image: ')
+    print('height of the image: ',h)
+    print('width of the image: ',w)
 
     # this will eventually miss segments of the image
     cell_h = h // n
@@ -40,5 +40,4 @@ def segment_image(img_path : str, n : int = 10):
 
             cells[r].append(img_arr[y1:y2,x1:x2])
 
-    print(cells)
     return cells

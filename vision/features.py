@@ -45,7 +45,7 @@ def get_features(cells : list[list[np.ndarray]]):
 
     # min-max normalizing both the arrays with a smoothing factor of 1e-8 to prevent division by zero
 
-    soil_quality = soil_quality - soil_quality.min() / (soil_quality.max() - soil_quality.min() + 1e-8)
+    soil_quality = (soil_quality - soil_quality.min()) / ((soil_quality.max() - soil_quality.min() + 1e-8))
 
     return soil_quality, moisture_level 
 
@@ -70,7 +70,7 @@ def get_ndvi_proxy(cells : list[list[np.ndarray]]):
             numerator = green_channel - red_channel
             denominator = green_channel + red_channel + 1e-8
 
-            ndvi_arr = np.mean(numerator / denominator)
+            ndvi_arr[i][j] = np.mean(numerator / denominator)
 
     # shifts the range from [-1,1] --> [0,1]
     return (ndvi_arr + 1) / 2
