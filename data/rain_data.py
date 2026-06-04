@@ -19,7 +19,7 @@ def get_effective_rain(num_cells,latitude=None,longitude=None):
     }
 
     response = requests.get(url,params=params).json()
-    daily_rain = response['data']['precipitation_sum']
+    daily_rain = response['daily']['precipitation_sum']
 
     # daily rain list may contain None values
     annual_rain = sum([x for x in daily_rain if x is not None])
