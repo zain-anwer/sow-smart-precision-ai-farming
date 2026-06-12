@@ -361,7 +361,7 @@ with st.sidebar:
 
     if image_bytes:
         st.image(pil_from_bytes(image_bytes), caption="Uploaded image",
-                 use_container_width=True)
+                 use_column_width=True)
 
     st.divider()
     run_btn = st.button("▶  Run Optimisation")
@@ -401,7 +401,7 @@ img_w, img_h = pil_img.size
 col_img, col_info = st.columns([2, 1])
 with col_img:
     st.image(pil_img, caption=f"Input · {grid_n}×{grid_n} grid",
-             use_container_width=True)
+             use_column_width=True)
 with col_info:
     st.markdown(
         metric_card("Grid cells", f"{grid_n * grid_n}") +
