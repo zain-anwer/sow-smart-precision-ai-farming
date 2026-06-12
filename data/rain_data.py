@@ -1,6 +1,7 @@
 # MODULE NEEDS FIXING
 
 import requests
+import datetime
 
 # get lat and lon through ip geolocation
 def get_effective_rain(num_cells,latitude=None,longitude=None):
@@ -8,16 +9,19 @@ def get_effective_rain(num_cells,latitude=None,longitude=None):
     if latitude is None or longitude is None:
         return 0
 
-    url = "https://api.open-meteo.com/v1/forecast"
+    end_date   = datetime.date.today() - datetime.timedelta(days=1)
+    start_date = end_date - datetime.timedelta(days=364) 
 
+    url = "https://archive-api.open-meteo.com/v1/archive"
+    
     # request body
     params = {
-        'latitude': latitude,
-        'longitude': longitude,
-        'daily': 'precipitation_sum',
-        'past_days': 365,
-        'forecast_days': 0,
-        'timezone': 'auto'
+        "latitude":   latitude,
+        "longitude":  longitude,
+        "daily":      "precipitation_sum",
+        "start_date": start_date.isoformat(),
+        "end_date":   end_date.isoformat(),
+        "timezone":   "auto",
     }
 
     response = requests.get(url,params=params).json()
